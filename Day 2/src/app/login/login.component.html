@@ -1,16 +1,17 @@
 <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
   <div>
-    <label for="username">Username:</label>
+    <label for="email">Email ID:</label>
     <input
-      type="text"
-      id="username"
-      name="username"
-      [(ngModel)]="username"
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="email"
       required
-      #usernameInput="ngModel"
+      email
+      #emailInput="ngModel"
     />
-    <div *ngIf="usernameInput.invalid && usernameInput.touched">
-      Username is required
+    <div *ngIf="emailInput.invalid && emailInput.touched">
+      Valid email is required
     </div>
   </div>
 
@@ -22,10 +23,11 @@
       name="password"
       [(ngModel)]="password"
       required
+      minlength="6"
       #passwordInput="ngModel"
     />
     <div *ngIf="passwordInput.invalid && passwordInput.touched">
-      Password is required
+      Password is required (min 6 characters)
     </div>
   </div>
 
