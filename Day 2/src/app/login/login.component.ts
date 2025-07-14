@@ -1,17 +1,22 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  username: string = '';
+  email: string = '';
   password: string = '';
 
   onSubmit() {
-    if (this.username && this.password) {
-      // You can add your authentication logic here
-      alert(`Logging in with username: ${this.username} and password: ${this.password}`);
+    if (this.email && this.password) {
+      alert(`Logging in with email: ${this.email} and password: ${this.password}`);
+    } else {
+      alert('Please fill in both fields');
     }
   }
 }
