@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,12 +14,18 @@ export class AppComponent {
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
-      username: [''],
-      password: ['']
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
     });
   }
 
   onSubmit() {
-    console.log('Form submitted:', this.loginForm.value);
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      console.log('Logging in with:', { email, password });
+      alert(`Logging in with email: ${email} and password: ${password}`);
+    } else {
+      alert('Please fill in both email and password correctly.');
+    }
   }
 }
